@@ -1,18 +1,16 @@
-package com.mehdisarf.communicationclientdemo.client;
+package com.mehdisarf.communicationclientdemo.client.practices;
 
 import okhttp3.*;
 
 import java.io.IOException;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
-public class SecondOkHttpDemo {
+public class OkHttpDemo {
 
     public static void sendGetRequest() throws IOException {
 
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url("http://localhost:8080/sleeppersons")
+                .url("http://localhost:8080/persons")
                 .build();
 
         Call call = client.newCall(request);
@@ -32,13 +30,11 @@ public class SecondOkHttpDemo {
         OkHttpClient client = new OkHttpClient();
         RequestBody requestBodyWithJsonBody = RequestBody.create(MediaType.parse("application/json"), jsonString);
         Request request = new Request.Builder()
-                .url("http://localhost:8080/sleeppersons")
+                .url("http://localhost:8080/persons")
                 .post(requestBodyWithJsonBody)
                 .build();
-        System.out.println("<< Before execute() " + LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")) + ">>");
         Response response = client.newCall(request).execute();
-        System.out.println("<< After execute() " + LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")) + ">>");
         System.out.println(response);
-        System.out.println(response.body().string()); System.out.println();
+        System.out.println(response.body().string());
     }
 }

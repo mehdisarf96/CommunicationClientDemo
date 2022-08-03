@@ -1,24 +1,19 @@
-package com.mehdisarf.communicationclientdemo.client;
+package com.mehdisarf.communicationclientdemo.client.practices;
 
 import okhttp3.*;
 
 import java.io.IOException;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.concurrent.TimeUnit;
 
-public class ForthOkHttpDemo implements Runnable {
+public class ThirdOkHttpDemo implements Runnable {
 
     @Override
     public void run() {
         String jsonString = "{ \"firstName\": \"mehdi\", \"lastName\": \"sarf\" }";
 
-        OkHttpClient client = new OkHttpClient.Builder()
-                .readTimeout(1, TimeUnit.MINUTES)
-                .build();
-
+        OkHttpClient client = new OkHttpClient();
         RequestBody requestBodyWithJsonBody = RequestBody.create(MediaType.parse("application/json"), jsonString);
-
         Request request = new Request.Builder()
                 .url("http://localhost:8080/sleeppersons")
                 .post(requestBodyWithJsonBody)
